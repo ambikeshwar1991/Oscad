@@ -6,7 +6,7 @@
 # You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 # It is modified by Yogesh Dilip Save on 9th October 2012.
 
-import wx
+import wx, wx.lib.scrolledpanel
 import os,re
 ID_ABOUT=101
 ID_OPEN=102
@@ -30,61 +30,65 @@ def convertintoScientificForm(str):
   else:
     return "e-00"
 
-class PageOne(wx.Panel):
+class PageOne(wx.lib.scrolledpanel.ScrolledPanel):
   def __init__(self, parent):
-    wx.Panel.__init__(self, parent)
-    
+    wx.lib.scrolledpanel.ScrolledPanel.__init__(self, parent)
+    self.SetupScrolling()
+
     grid1 = wx.GridSizer(5, 2)	
-    grid1.Add(wx.StaticText(self,-1,'Enter Source Name:'),1)
+  
+    grid1.Add(wx.StaticText(self,-1,'Enter Source Name:'),0)
+    
     hbox = wx.BoxSizer(wx.HORIZONTAL)
     self.source = wx.TextCtrl(self, -1, '',  (150, 75), (120, -1))
     hbox.Add(self.source)
     self.source2 =wx.TextCtrl(self, -1, '',  (150, 75), (120, -1))
     hbox.Add(self.source2)
-    grid1.Add(hbox)
+    grid1.Add(hbox,0)
     
-    grid1.Add(wx.StaticText(self,-1,'Start'),1)
+    grid1.Add(wx.StaticText(self,-1,'Start'),0)
     hbox = wx.BoxSizer(wx.HORIZONTAL)
-    self.start = wx.SpinCtrl(self, -1, '',  (150, 75), (60, -1))
+    self.start = wx.SpinCtrl(self, -1, '',  (150, 75), (120, -1), min=-10,max=300)
     hbox.Add(self.start)
-    self.start2 = wx.SpinCtrl(self, -1, '',  (150, 75), (60, -1))
+    self.start2 = wx.SpinCtrl(self, -1, '',  (150, 75), (120, -1))
     hbox.Add(self.start2)
     self.startscale = wx.ComboBox(self, -1, value = 'Volts or Amperes',  choices=['mV or mA', 'uV or uA', 'nV or nA', 'pV or pA'], size=(160, -1), style=wx.CB_DROPDOWN)
     hbox.Add(self.startscale)
-    grid1.Add(hbox)
+    grid1.Add(hbox, 0)
 
-    grid1.Add(wx.StaticText(self,-1,'Increment'),1)
+    grid1.Add(wx.StaticText(self,-1,'Increment'),0)
     hbox = wx.BoxSizer(wx.HORIZONTAL)
-    self.step = wx.SpinCtrl(self, -1, '',  (150, 75), (60, -1))
+    self.step = wx.SpinCtrl(self, -1, '',  (150, 75), (120, -1))
     hbox.Add(self.step)
-    self.step2 = wx.SpinCtrl(self, -1, '',  (150, 75), (60, -1))
+    self.step2 = wx.SpinCtrl(self, -1, '',  (150, 75), (120, -1))
     hbox.Add(self.step2)
     self.stepscale = wx.ComboBox(self, -1, value = 'Volts or Amperes',  choices=['mV or mA', 'uV or uA', 'nV or nA', 'pV or pA'], size=(160, -1), style=wx.CB_DROPDOWN)
     hbox.Add(self.stepscale)
-    grid1.Add(hbox)
+    grid1.Add(hbox, 0)
 
-    grid1.Add(wx.StaticText(self,-1,'Stop'),1)
+    grid1.Add(wx.StaticText(self,-1,'Stop'),0)
     hbox = wx.BoxSizer(wx.HORIZONTAL)
-    self.stop = wx.SpinCtrl(self, -1, '',  (150, 75), (60, -1))
+    self.stop = wx.SpinCtrl(self, -1, '',  (150, 75), (120, -1))
     hbox.Add(self.stop)
-    self.stop2 = wx.SpinCtrl(self, -1, '',  (150, 75), (60, -1))
+    self.stop2 = wx.SpinCtrl(self, -1, '',  (150, 75), (120, -1))
     hbox.Add(self.stop2)
     self.stopscale = wx.ComboBox(self, -1, value = 'Volts or Amperes',  choices=['mV or mA', 'uV or uA', 'nV or nA', 'pV or pA'], size=(160, -1), style=wx.CB_DROPDOWN)
     hbox.Add(self.stopscale)
-    grid1.Add(hbox)
+    grid1.Add(hbox, 0)
     
     hbox = wx.BoxSizer(wx.HORIZONTAL)
     self.cb = wx.CheckBox(self, -1, 'Operating Point analysis', (10, 10))
     hbox.Add(self.cb)
-    grid1.Add(wx.StaticText(self,-1,''),1)
-    grid1.Add(hbox)
+    grid1.Add(wx.StaticText(self,-1,''),0)
+    grid1.Add(hbox, 0)
     
     hbox = wx.BoxSizer(wx.HORIZONTAL)
     self.button = wx.Button(self,901,"Add Simulation Data")
     hbox.Add(self.button)
     self.button.Bind(wx.EVT_BUTTON, self.enter_simulation)
-    grid1.Add(wx.StaticText(self,-1,''),1)
-    grid1.Add(hbox)
+    grid1.Add(wx.StaticText(self,-1,''),0)
+    grid1.Add(hbox,0)
+
     self.SetSizer(grid1)
     self.Centre()
     self.Show(True)
@@ -267,7 +271,7 @@ class MainFrame(wx.Frame):
         filemenu.AppendSeparator()
         filemenu.Append(ID_ABOUT, "&About"," Information about this program")
         filemenu.AppendSeparator()
-        filemenu.Append(ID_EXIT,"E&xit"," Terminate the program")
+        filemenu.Append(ID_EXIT,"&Exit"," Terminate the program")
 
         # Creating the menubar.
         menuBar = wx.MenuBar()
@@ -316,14 +320,15 @@ class MainFrame(wx.Frame):
         nb.AddPage(page4, "Fourier")
         nb.AddPage(page5, "Pole Zero")
         nb.AddPage(page6, "Transfer Function")
-
+       
         # finally, put the notebook in a sizer for the panel to manage
         # the layout
         sizer = wx.BoxSizer(wx.VERTICAL)
         sizer.Add(nb, 1, wx.EXPAND)
 	sizer.Add(self.control,1,wx.EXPAND)
-        self.SetSizer(sizer)
 
+        self.SetSizer(sizer)
+	
 	 #wx.Frame.__init__(self,parent,wx.ID_ANY, title)
 
         # Add a text editor and a status bar
