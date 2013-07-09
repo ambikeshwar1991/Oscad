@@ -1,0 +1,15 @@
+* eeschema netlist version 1.1 (spice format) creation date: monday 08 july 2013 03:32:09 pm ist
+.include ua741.sub
+
+* Printing option calc
+* Plotting option vplot8_1
+x1  in1 gnd out1 ua741
+v1  n-000002 gnd sine(    )
+r3  out1 gnd 10000
+r1  in1 n-000002 1000
+r2  out1 in1 2000
+
+.tran  100e-06 40e-03 0e-00
+.plot v(in1)/v(out1)
+.plot v(n-000002) v(out1) 
+.end

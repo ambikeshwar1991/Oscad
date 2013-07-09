@@ -1,0 +1,6 @@
+.model nmos NMOS( Cgso=9.027n Tox=100n Rs=1.624m Tt=288n Vto=2.831 
++ Rd=1.031m Rg=13.89 Theta=0 Phi=.6 Fc=.5 
++ Delta=0 Vmax=0 Cgdo=1.679n Kappa=0 Rds=444.4K 
++ Level=3 L=2u N=1 Uo=600 Eta=0 
++ W=.3 Mj=.5 Gamma=0 Xj=0 Pb=.8 
++ Cbd=3.229n Is=194E-18 Kp=20.53u )
