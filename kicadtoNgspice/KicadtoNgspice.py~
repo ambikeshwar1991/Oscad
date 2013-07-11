@@ -1213,7 +1213,7 @@ def convertICintoBasicBlocks(schematicInfo,outputOption):
         schematicInfo.insert(index,"* Printing option "+compType)
       elif compType=="calc":
 	outputOption.append("plot "+words[2]+"\n")
-        schematicInfo.insert(index,"* Printing option "+compType)
+        schematicInfo.insert(index,"* Plotting option "+compType)
       elif compType=="vprint8_1":
         outputOption.append("print ")
         for i in range(1,len(words)-1):
