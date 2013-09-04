@@ -1,4 +1,4 @@
-EESchema Schematic File Version 2  date Tuesday 14 May 2013 11:52:16 AM IST
+EESchema Schematic File Version 2  date Thursday 01 August 2013 05:17:20 PM IST
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -29,6 +29,16 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
+LIBS:analogSpice
+LIBS:analogXSpice
+LIBS:convergenceAidSpice
+LIBS:converterSpice
+LIBS:digitalSpice
+LIBS:digitalXSpice
+LIBS:linearSpice
+LIBS:measurementSpice
+LIBS:portSpice
+LIBS:sourcesSpice
 LIBS:example_2.1-cache
 EELAYER 25  0
 EELAYER END
@@ -36,7 +46,7 @@ $Descr A4 11700 8267
 encoding utf-8
 Sheet 1 1
 Title ""
-Date "14 may 2013"
+Date "1 aug 2013"
 Rev ""
 Comp ""
 Comment1 ""
@@ -44,6 +54,9 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
+Connection ~ 6200 3150
+Wire Wire Line
+	6200 2850 6200 3150
 Connection ~ 5750 5050
 Wire Wire Line
 	5550 3150 5650 3150
@@ -65,6 +78,18 @@ Wire Wire Line
 	5050 3150 5050 3650
 Wire Wire Line
 	6500 5050 5050 5050
+Wire Wire Line
+	5600 2850 5600 3150
+Connection ~ 5600 3150
+$Comp
+L VPLOT8 U2
+U 1 1 51FA4A87
+P 5900 2850
+F 0 "U2" H 5750 2950 50  0000 C CNN
+F 1 "VPLOT8" H 6050 2950 50  0000 C CNN
+	1    5900 2850
+	1    0    0    -1  
+$EndComp
 $Comp
 L DC v2
 U 1 1 516BA020

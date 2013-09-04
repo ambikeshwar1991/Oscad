@@ -1,4 +1,4 @@
-EESchema-LIBRARY Version 2.3  Date: Thursday 11 July 2013 03:25:19 PM IST
+EESchema-LIBRARY Version 2.3  Date: Thursday 29 August 2013 12:29:08 PM IST
 #encoding utf-8
 #
 # AC
@@ -112,11 +112,11 @@ X ~ 2 0 -250 100 U 60 60 1 1 P
 ENDDRAW
 ENDDEF
 #
-# vplot8_1
+# vdbplot8_1
 #
-DEF vplot8_1 U 0 40 Y Y 8 F N
+DEF vdbplot8_1 U 0 40 Y Y 8 F N
 F0 "U" -150 100 50 H V C CNN
-F1 "vplot8_1" 150 100 50 H V C CNN
+F1 "vdbplot8_1" 150 100 50 H V C CNN
 DRAW
 C 0 0 100 0 0 0 N
 X + 1 0 -300 200 U 40 40 1 1 I

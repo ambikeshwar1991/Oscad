@@ -1,4 +1,4 @@
-update=Tuesday 28 May 2013 03:25:45 PM IST
+update=Tuesday 30 July 2013 04:15:08 PM IST
 last_client=eeschema
 [eeschema]
 version=1
@@ -72,3 +72,14 @@ LibName37=/home/holy/OSCAD/library/linearSpice
 LibName38=/home/holy/OSCAD/library/measurementSpice
 LibName39=/home/holy/OSCAD/library/portSpice
 LibName40=/home/holy/OSCAD/library/sourcesSpice
+LibName41=/home/ambikeshwar/OSCAD/library/analogSpice
+LibName42=/home/ambikeshwar/OSCAD/library/analogXSpice
+LibName43=/home/ambikeshwar/OSCAD/library/convergenceAidSpice
+LibName44=/home/ambikeshwar/OSCAD/library/converterSpice
+LibName45=/home/ambikeshwar/OSCAD/library/digitalSpice
+LibName46=/home/ambikeshwar/OSCAD/library/digitalXSpice
+LibName47=/home/ambikeshwar/OSCAD/library/linearSpice
+LibName48=/home/ambikeshwar/OSCAD/library/measurementSpice
+LibName49=/home/ambikeshwar/OSCAD/library/portSpice
+LibName50=/home/ambikeshwar/OSCAD/library/sine
+LibName51=/home/ambikeshwar/OSCAD/library/sourcesSpice

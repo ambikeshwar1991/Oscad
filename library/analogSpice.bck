@@ -1,4 +1,4 @@
-EESchema-DOCLIB  Version 2.0  Date: Friday 19 October 2012 06:30:49 PM IST
+EESchema-DOCLIB  Version 2.0  Date: Saturday 20 October 2012 08:45:14 PM IST
 #
 $CMP CAPAPOL
 D Condensateur polarise
@@ -35,11 +35,6 @@ $ENDCMP
 #
 $CMP PNP
 F transistors/bipolar/*.*
-$ENDCMP
-#
-$CMP Port
-D Port Connection
-K U port
 $ENDCMP
 #
 $CMP R

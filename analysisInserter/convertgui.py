@@ -29,8 +29,70 @@ def convertintoScientificForm(str):
     return "e-03"
   else:
     return "e-00"
+class PageOne(wx.Panel):
+  def __init__(self, parent):
+    wx.Panel.__init__(self, parent)
+    
+    grid1 = wx.GridSizer(5, 2)	
+    grid1.Add(wx.StaticText(self,-1,'Enter Source Name:'),1)
+    hbox = wx.BoxSizer(wx.HORIZONTAL)
+    self.source = wx.TextCtrl(self, -1, '', (150, 75), (120, -1))
+    hbox.Add(self.source)
+    grid1.Add(hbox)
 
-class PageOne(wx.lib.scrolledpanel.ScrolledPanel):
+    grid1.Add(wx.StaticText(self,-1,'Start'),1)
+    hbox = wx.BoxSizer(wx.HORIZONTAL)
+    self.start = wx.SpinCtrl(self, -1, '', (150, 75), (60, -1))
+    hbox.Add(self.start)
+    self.startscale = wx.ComboBox(self, -1, value = 'Volts or Amperes', choices=['mV or mA', 'uV or uA', 'nV or nA', 'pV or pA'], size=(160, -1), style=wx.CB_DROPDOWN)
+    hbox.Add(self.startscale)
+    grid1.Add(hbox)
+
+    grid1.Add(wx.StaticText(self,-1,'Increment'),1)
+    hbox = wx.BoxSizer(wx.HORIZONTAL)
+    self.step = wx.SpinCtrl(self, -1, '', (150, 75), (60, -1))
+    hbox.Add(self.step)
+    self.stepscale = wx.ComboBox(self, -1, value = 'Volts or Amperes', choices=['mV or mA', 'uV or uA', 'nV or nA', 'pV or pA'], size=(160, -1), style=wx.CB_DROPDOWN)
+    hbox.Add(self.stepscale)
+    grid1.Add(hbox)
+
+    grid1.Add(wx.StaticText(self,-1,'Stop'),1)
+    hbox = wx.BoxSizer(wx.HORIZONTAL)
+    self.stop = wx.SpinCtrl(self, -1, '', (150, 75), (60, -1))
+    hbox.Add(self.stop)
+    self.stopscale = wx.ComboBox(self, -1, value = 'Volts or Amperes', choices=['mV or mA', 'uV or uA', 'nV or nA', 'pV or pA'], size=(160, -1), style=wx.CB_DROPDOWN)
+    hbox.Add(self.stopscale)
+    grid1.Add(hbox)
+    
+    hbox = wx.BoxSizer(wx.HORIZONTAL)
+    self.cb = wx.CheckBox(self, -1, 'Operating Point analysis', (10, 10))
+    hbox.Add(self.cb)
+    grid1.Add(wx.StaticText(self,-1,''),1)
+    grid1.Add(hbox)
+    
+    hbox = wx.BoxSizer(wx.HORIZONTAL)
+    self.button = wx.Button(self,901,"Add Simulation Data")
+    hbox.Add(self.button)
+    self.button.Bind(wx.EVT_BUTTON, self.enter_simulation)
+    grid1.Add(wx.StaticText(self,-1,''),1)
+    grid1.Add(hbox)
+    self.SetSizer(grid1)
+    self.Centre()
+    self.Show(True)
+  
+  def enter_simulation(self,e):
+    txtctrl = self.GetParent().GetParent().control
+    previous_data = txtctrl.GetValue()
+    start = str(self.start.GetValue()) +convertintoScientificForm(str(self.startscale.GetValue()))
+    stop = str(self.stop.GetValue()) +convertintoScientificForm(str(self.stopscale.GetValue()))
+    step = str(self.step.GetValue()) +convertintoScientificForm(str(self.stepscale.GetValue()))
+    source = str(self.source.GetValue())
+    if self.cb.GetValue():
+      appendline = ".op"
+    else:
+      appendline = ".dc " + " " + str(source)+" "+ str(start) + " " + str(stop) + " " + str(step) + "\n"
+    txtctrl.AppendText(appendline)
+class PageTwo(wx.lib.scrolledpanel.ScrolledPanel):
   def __init__(self, parent):
     wx.lib.scrolledpanel.ScrolledPanel.__init__(self, parent)
     self.SetupScrolling()
@@ -67,42 +129,37 @@ class PageOne(wx.lib.scrolledpanel.ScrolledPanel):
     hbox.Add(self.start)
     self.startscale = wx.ComboBox(self, -1, value = 'Volts or Amperes',  choices=['mV or mA', 'uV or uA', 'nV or nA', 'pV or pA'], size=(150, -1), style=wx.CB_DROPDOWN)
     hbox.Add(self.startscale)
-    self.start2 = wx.SpinCtrl(self, -1, '',  (150, 75), (120, -1))
+    self.start2 = wx.SpinCtrl(self, -1, '',  (150, 75), (120, -1), min=-100000,max=99999999)
     hbox.Add(self.start2)
-    self.startscale = wx.ComboBox(self, -1, value = 'Volts or Amperes',  choices=['mV or mA', 'uV or uA', 'nV or nA', 'pV or pA'], size=(150, -1), style=wx.CB_DROPDOWN)
-    hbox.Add(self.startscale)
+    self.startscale2 = wx.ComboBox(self, -1, value = 'Volts or Amperes',  choices=['mV or mA', 'uV or uA', 'nV or nA', 'pV or pA'], size=(150, -1), style=wx.CB_DROPDOWN)
+    hbox.Add(self.startscale2)
     grid1.Add(hbox, 0)
 
     grid1.Add(wx.StaticText(self,-1,'Increment'),0)
     hbox = wx.BoxSizer(wx.HORIZONTAL)
-    self.step = wx.SpinCtrl(self, -1, '',  (150, 75), (120, -1))
+    self.step = wx.SpinCtrl(self, -1, '',  (150, 75), (120, -1), min=-100000,max=99999999)
     hbox.Add(self.step)
-    self.startscale = wx.ComboBox(self, -1, value = 'Volts or Amperes',  choices=['mV or mA', 'uV or uA', 'nV or nA', 'pV or pA'], size=(150, -1), style=wx.CB_DROPDOWN)
-    hbox.Add(self.startscale)
-    self.step2 = wx.SpinCtrl(self, -1, '',  (150, 75), (120, -1))
-    hbox.Add(self.step2)
-    self.stepscale = wx.ComboBox(self, -1, value = 'Volts or Amperes',  choices=['mV or mA', 'uV or uA', 'nV or nA', 'pV or pA'], size=(160, -1), style=wx.CB_DROPDOWN)
+    self.stepscale = wx.ComboBox(self, -1, value = 'Volts or Amperes',  choices=['mV or mA', 'uV or uA', 'nV or nA', 'pV or pA'], size=(150, -1), style=wx.CB_DROPDOWN)
     hbox.Add(self.stepscale)
+    self.step2 = wx.SpinCtrl(self, -1, '',  (150, 75), (120, -1), min=-100000,max=99999999)
+    hbox.Add(self.step2)
+    self.stepscale2 = wx.ComboBox(self, -1, value = 'Volts or Amperes',  choices=['mV or mA', 'uV or uA', 'nV or nA', 'pV or pA'], size=(160, -1), style=wx.CB_DROPDOWN)
+    hbox.Add(self.stepscale2)
     grid1.Add(hbox, 0)
 
     grid1.Add(wx.StaticText(self,-1,'Stop'),0)
     hbox = wx.BoxSizer(wx.HORIZONTAL)
-    self.stop = wx.SpinCtrl(self, -1, '',  (150, 75), (120, -1))
+    self.stop = wx.SpinCtrl(self, -1, '',  (150, 75), (120, -1), min=-100000,max=99999999)
     hbox.Add(self.stop)
-    self.startscale = wx.ComboBox(self, -1, value = 'Volts or Amperes',  choices=['mV or mA', 'uV or uA', 'nV or nA', 'pV or pA'], size=(150, -1), style=wx.CB_DROPDOWN)
-    hbox.Add(self.startscale)
-    self.stop2 = wx.SpinCtrl(self, -1, '',  (150, 75), (120, -1))
-    hbox.Add(self.stop2)
-    self.stopscale = wx.ComboBox(self, -1, value = 'Volts or Amperes',  choices=['mV or mA', 'uV or uA', 'nV or nA', 'pV or pA'], size=(160, -1), style=wx.CB_DROPDOWN)
+    self.stopscale = wx.ComboBox(self, -1, value = 'Volts or Amperes',  choices=['mV or mA', 'uV or uA', 'nV or nA', 'pV or pA'], size=(150, -1), style=wx.CB_DROPDOWN)
     hbox.Add(self.stopscale)
+    self.stop2 = wx.SpinCtrl(self, -1, '',  (150, 75), (120, -1), min=-100000,max=99999999)
+    hbox.Add(self.stop2)
+    self.stopscale2 = wx.ComboBox(self, -1, value = 'Volts or Amperes',  choices=['mV or mA', 'uV or uA', 'nV or nA', 'pV or pA'], size=(160, -1), style=wx.CB_DROPDOWN)
+    hbox.Add(self.stopscale2)
     grid1.Add(hbox, 0)
     
-    hbox = wx.BoxSizer(wx.HORIZONTAL)
-    self.cb = wx.CheckBox(self, -1, 'Operating Point analysis', (10, 10))
-    hbox.Add(self.cb)
-    grid1.Add(wx.StaticText(self,-1,''),0)
-    grid1.Add(hbox, 0)
-    
+       
     hbox = wx.BoxSizer(wx.HORIZONTAL)
     self.button = wx.Button(self,901,"Add Simulation Data")
     hbox.Add(self.button)
@@ -121,17 +178,14 @@ class PageOne(wx.lib.scrolledpanel.ScrolledPanel):
     stop  =  str(self.stop.GetValue())  +convertintoScientificForm(str(self.stopscale.GetValue()))
     step  =  str(self.step.GetValue())  +convertintoScientificForm(str(self.stepscale.GetValue()))
     source  =  str(self.source.GetValue())
-    start2 = str(self.start2.GetValue()) +convertintoScientificForm(str(self.startscale.GetValue()))
-    stop2  =  str(self.stop2.GetValue())  +convertintoScientificForm(str(self.stopscale.GetValue()))
-    step2  =  str(self.step2.GetValue())  +convertintoScientificForm(str(self.stepscale.GetValue()))
+    start2 = str(self.start2.GetValue()) +convertintoScientificForm(str(self.startscale2.GetValue()))
+    stop2  =  str(self.stop2.GetValue())  +convertintoScientificForm(str(self.stopscale2.GetValue()))
+    step2  =  str(self.step2.GetValue())  +convertintoScientificForm(str(self.stepscale2.GetValue()))
     source2  =  str(self.source2.GetValue())
-    if self.cb.GetValue():
-      appendline = ".op"
-    else:
-      appendline = ".dc "  + " " + str(source)+" "+ str(start) + " " + str(stop)  + " " + str(step) + " " + str(source2) + " " + str(start2) + " " + str(stop2) + " " + str(step2) +  "\n" 
+    appendline = ".dc "  + " " + str(source)+" "+ str(start) + " " + str(stop)  + " " + str(step) + " " + str(source2) + " " + str(start2) + " " + str(stop2) + " " + str(step2) +  "\n" 
     txtctrl.AppendText(appendline)
 
-class PageTwo(wx.Panel):
+class PageThree(wx.Panel):
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)
         sizer = wx.StaticBoxSizer(wx.StaticBox(self, -1, 'Scale'), orient=wx.HORIZONTAL)
@@ -202,7 +256,7 @@ class PageTwo(wx.Panel):
 	#txtctrl.AppendText(appendline_control)
 
 
-class PageThree(wx.Panel):
+class PageFour(wx.Panel):
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)
         
@@ -262,19 +316,19 @@ class PageThree(wx.Panel):
 #	txtctrl.AppendText(appendline_control)
 
 
-class PageFour(wx.Panel):
+class PageFive(wx.Panel):
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)
         t = wx.StaticText(self, -1, "Fourier", (60,60))
 
 
-class PageFive(wx.Panel):
+class PageSix(wx.Panel):
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)
         t = wx.StaticText(self, -1, "Pole Zero", (60,60))
 
 
-class PageSix(wx.Panel):
+class PageSeven(wx.Panel):
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)
         t = wx.StaticText(self, -1, "Transfer Function", (60,60))
@@ -333,14 +387,15 @@ class MainFrame(wx.Frame):
         page4 = PageFour(nb)
         page5 = PageFive(nb)
         page6 = PageSix(nb)
-
+        page7 = PageSeven(nb)
         # add the pages to the notebook with the label to show on the tab
         nb.AddPage(page1, "DC")
-        nb.AddPage(page2, "AC")
-        nb.AddPage(page3, "Transient")
-        nb.AddPage(page4, "Fourier")
-        nb.AddPage(page5, "Pole Zero")
-        nb.AddPage(page6, "Transfer Function")
+        nb.AddPage(page2, "DC_sec")
+        nb.AddPage(page3, "AC")
+        nb.AddPage(page4, "Transient")
+        nb.AddPage(page5, "Fourier")
+        nb.AddPage(page6, "Pole Zero")
+        nb.AddPage(page7, "Transfer Function")
        
         # finally, put the notebook in a sizer for the panel to manage
         # the layout

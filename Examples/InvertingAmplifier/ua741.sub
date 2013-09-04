@@ -1,11 +1,11 @@
 * Subcircuit ua741
-.subckt ua741 6 7 3 
-* eeschema netlist version 1.1 (spice format) creation date: monday 17 december 2012 11:16:58 am ist
-rout1  3 2 75
-eout1  2 0 1 0 1
-cbw1  1 0 31.85e-9
-rbw1  1 4 0.5e6
-ein1  4 0 7 6 100e3
-rin1  7 6 2e6
+.subckt ua741 n-000006 n-000007 n-000003 
+* eeschema netlist version 1.1 (spice format) creation date: thursday 11 july 2013 05:13:06 pm ist
+rout1  n-000003 n-000002 75
+eout1  n-000002 gnd n-000001 gnd 1
+cbw1  n-000001 gnd 31.85e-9
+rbw1  n-000001 n-000004 0.5e6
+ein1  n-000004 gnd n-000007 n-000006 100e3
+rin1  n-000007 n-000006 2e6
 
 .ends ua741

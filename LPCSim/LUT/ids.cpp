@@ -1,4 +1,4 @@
-/****************************************************************************
+1/****************************************************************************
 	This routine assumes the existance of file named "vbs_files.txt" 
 	and	the files decribed in the that file in current directory.
 	File vbs_files.txt contains vbs values and corresponding Id-Vds_Vgs file names

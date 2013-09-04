@@ -1,20 +1,20 @@
-* eeschema netlist version 1.1 (spice format) creation date: wednesday 29 may 2013 04:04:50 pm ist
+* eeschema netlist version 1.1 (spice format) creation date: monday 26 august 2013 12:32:59 pm ist
 .include npn.lib
 
-v1  6 0 dc 10
-* Plotting option vplot8_1
-v2  2 0 ac 0.5
+* Plotting option vdbplot8_1
+v1  5 0 dc 10
+v2  2 0 ac 1m
 r1  3 2 50
-r2  6 8 200k
-c1  3 8 40u
-r3  8 0 50k
-r6  4 0 1k
-c2  0 5 100u
-c3  4 7 40u
-r5  6 7 2k
-r4  5 0 1.5k
-q1 7 8 5 npn
+r2  5 7 200k
+c1  3 7 40u
+r3  7 0 50k
+r6  8 0 1k
+c2  0 4 100u
+c3  8 6 40u
+r5  5 6 2k
+r4  4 0 1.5k
+q1 6 7 4 npn
 
-.ac dec 100 100Hz 10KHz
-.plot v(4) 
+.dc  v1 1e-00 4e-00 2e-00 v2 1e-00 5e-00 3e-00
+.plot db(v(8)) 
 .end

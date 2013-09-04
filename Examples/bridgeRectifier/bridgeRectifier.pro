@@ -1,4 +1,4 @@
-update=Monday 22 October 2012 04:25:50 PM IST
+update=Wednesday 24 July 2013 03:08:34 PM IST
 last_client=eeschema
 [eeschema]
 version=1
@@ -69,3 +69,4 @@ LibName34=linearSpice
 LibName35=measurementSpice
 LibName36=portSpice
 LibName37=sourcesSpice
+LibName38=/home/ambikeshwar/OSCAD/library/sourcesSpice

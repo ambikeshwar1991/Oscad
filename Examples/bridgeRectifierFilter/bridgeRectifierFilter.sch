@@ -1,4 +1,4 @@
-EESchema Schematic File Version 2  date Sunday 09 December 2012 03:22:19 PM IST
+EESchema Schematic File Version 2  date Monday 29 July 2013 04:38:18 PM IST
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -29,13 +29,6 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
-LIBS:analogSpice
-LIBS:converterSpice
-LIBS:digitalSpice
-LIBS:linearSpice
-LIBS:measurementSpice
-LIBS:portSpice
-LIBS:sourcesSpice
 LIBS:bridgeRectifierFilter-cache
 EELAYER 25  0
 EELAYER END
@@ -43,7 +36,7 @@ $Descr A4 11700 8267
 encoding utf-8
 Sheet 1 1
 Title ""
-Date "9 dec 2012"
+Date "29 jul 2013"
 Rev ""
 Comp ""
 Comment1 ""
@@ -51,6 +44,12 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
+Text GLabel 5850 2900 0    60   Input ~ 0
+out
+Text GLabel 4500 3600 0    60   Input ~ 0
+in2
+Text GLabel 3700 2950 0    60   Input ~ 0
+in1
 Wire Wire Line
 	4400 2650 4500 2650
 Wire Wire Line

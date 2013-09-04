@@ -1208,8 +1208,20 @@ def convertICintoBasicBlocks(schematicInfo,outputOption):
           outputOption.append("v("+words[i]+") ")
         outputOption.append("\n")
         schematicInfo.insert(index,"* Plotting option "+compType)
+      elif compType=="vdbplot8_1":
+        outputOption.append("plot ")
+        for i in range(1,len(words)-1):
+          outputOption.append("db(v("+words[i]+")) ")
+        outputOption.append("\n")
+        schematicInfo.insert(index,"* Plotting option "+compType)
+      elif compType=="vphase_plot8_1":
+        outputOption.append("plot ")
+        for i in range(1,len(words)-1):
+          outputOption.append("v("+words[i]+") ")
+        outputOption.append("\n")
+        schematicInfo.insert(index,"* Plotting option "+compType)
       elif compType=="vprint1":
-        outputOption.append("print v("+words[1]+")\n")
+        outputOption.append("print ph(v("+words[1]+"))\n")
         schematicInfo.insert(index,"* Printing option "+compType)
       elif compType=="calc":
 	outputOption.append("plot "+words[2]+"\n")
@@ -1337,10 +1349,24 @@ for eachline in schematicInfo:
     modelName=words[4]
     index=schematicInfo.index(eachline)
     schematicInfo.remove(eachline)
-    schematicInfo.insert(index,words[0]+" "+words[1]+" "+words[2]+" "+words[3]+" "+words[3]+" "+words[4])
+    width=raw_input('  Enter width of mosfet '+words[0]+'(default=100u):')
+    length=raw_input('  Enter length of mosfet '+words[0]+'(default=100u):')
+    multiplicative_factor=raw_input('  Enter multiplicative factor of mosfet '+words[0]+'(default=1):')
+    if width=="": width="100u"
+    if multiplicative_factor=="": multiplicative_factor="100u"
+    if length=="": length="100u"
+    schematicInfo.insert(index,words[0]+" "+words[1]+" "+words[2]+" "+words[3]+" "+words[3]+" "+words[4]+" "+'M='+multiplicative_factor+" "+'L='+length+" "+'W='+width)
     if modelName in modelList:
        continue
     modelList.append(modelName)       
+  elif eachline[0]=='j':
+    modelName=words[4]
+    index=schematicInfo.index(eachline)
+    schematicInfo.remove(eachline)
+    schematicInfo.insert(index,words[0]+" "+words[1]+" "+words[2]+" "+words[3]+" "+words[4])
+    if modelName in modelList:
+       continue
+    modelList.append(modelName)
   elif eachline[0]=='x':
     subcktName=words[len(words)-1]
     if subcktName in subcktList:

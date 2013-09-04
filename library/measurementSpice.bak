@@ -1,5 +1,23 @@
-EESchema-LIBRARY Version 2.3  Date: Monday 17 December 2012 11:59:11 PM IST
+EESchema-LIBRARY Version 2.3  Date: Wednesday 10 July 2013 12:04:31 PM IST
 #encoding utf-8
+#
+# calc
+#
+DEF calc U 0 40 Y Y 8 F N
+F0 "U" -150 100 50 H V C CNN
+F1 "calc" 150 100 50 H V C CNN
+DRAW
+C 0 0 100 0 0 0 N
+X + 1 0 -300 200 U 40 40 1 1 I
+X + 2 0 -300 200 U 40 40 2 1 I
+X + 3 0 -300 200 U 40 40 3 1 I
+X + 4 0 -300 200 U 40 40 4 1 I
+X + 5 0 -300 200 U 40 40 5 1 I
+X + 6 0 -300 200 U 40 40 6 1 I
+X + 7 0 -300 200 U 40 40 7 1 I
+X + 8 0 -300 200 U 40 40 8 1 I
+ENDDRAW
+ENDDEF
 #
 # iplot
 #
